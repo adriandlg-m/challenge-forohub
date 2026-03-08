@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ForoHub | Cloud Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<div id="toast"></div>
+
+<div id="modal-edit" class="modal-overlay">
+    <div class="glass-panel" style="width: 350px;">
+        <h3 style="margin-top:0; font-size:1.1rem">Editar Tópico</h3>
+        <input type="hidden" id="edit-id">
+        <input type="text" id="edit-title">
+        <textarea id="edit-msg" rows="3"></textarea>
+        <select id="edit-course">
+            <option value="Java">Java</option>
+            <option value="Spring Boot">Spring Boot</option>
+            <option value="MySQL">MySQL</option>
+        </select>
+        <div style="display: flex; gap: 8px;">
+            <button onclick="saveEdit()" class="btn-action">Guardar</button>
+            <button onclick="closeModal()" style="background:#334155; border:none; color:white; padding:8px; border-radius:8px; cursor:pointer; flex:1; font-size:0.9rem">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+<div id="login-section" style="height:100vh; display:flex; justify-content:center; align-items:center; padding: 1rem">
+    <div class="glass-panel" style="width: 300px; text-align:center;">
+        <div class="logo" style="margin-bottom:1.5rem;">Foro<span>Hub</span></div>
+
+        <div id="login-form">
+            <input type="text" id="user-email" placeholder="Email (ej: adrian@mail.com)">
+            <input type="password" id="user-pass" placeholder="Password">
+            <button class="btn-action" onclick="login()">INGRESAR</button>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem;">
+                ¿No tienes cuenta? <a href="#" onclick="toggleAuth(true)" style="color: var(--accent-glow); text-decoration: none; font-weight: 600;">Regístrate aquí</a>
+            </p>
+        </div>
+
+        <div id="register-form" style="display: none;">
+            <input type="text" id="reg-nombre" placeholder="Tu Nombre o Alias"> <input type="email" id="reg-email" placeholder="Nuevo Email">
+            <input type="password" id="reg-pass" placeholder="Nueva Contraseña">
+            <button class="btn-action" onclick="registrarUsuario()">CREAR CUENTA</button>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem;">
+                ¿Ya tienes cuenta? <a href="#" onclick="toggleAuth(false)" style="color: var(--accent-glow); text-decoration: none; font-weight: 600;">Inicia sesión</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div id="dashboard-ui" style="display:none;">
+    <header>
+        <div class="logo">Foro<span>Hub</span></div>
+
+        <div style="flex: 1; max-width: 400px; margin: 0 2rem; position: relative;">
+            <input type="text" id="search-input" onkeyup="filterTopics()"
+                   placeholder="Buscar por título..."
+                   style="margin-bottom: 0; padding: 0.5rem 1rem 0.5rem 2.5rem; background: rgba(255,255,255,0.05); font-size: 0.85rem;">
+            <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); opacity: 0.5; font-size: 0.9rem;">🔍</span>
+        </div>
+
+        <div style="color: var(--text-muted); font-size: 0.9rem; display: flex; align-items: center; gap: 1rem;">
+            <span>Hola, <b id="display-name" style="color:var(--text-primary)"></b></span>
+            <button onclick="logout()" style="background:none; border:1px solid var(--border-glass); color:white; padding:4px 10px; border-radius:6px; cursor:pointer; font-size:0.85rem">Salir</button>
+        </div>
+    </header>
+
+    <div class="main-container" id="layout-main">
+        <aside>
+            <div class="glass-panel">
+                <h3 style="margin-top:0; color:var(--accent-glow); font-size:1.1rem">Nuevo Tópico</h3>
+                <input type="text" id="new-title" placeholder="Título">
+                <textarea id="new-msg" rows="4" placeholder="Mensaje..."></textarea>
+                <select id="new-course">
+                    <option value="Java">Java</option>
+                    <option value="Spring Boot">Spring Boot</option>
+                    <option value="MySQL">MySQL</option>
+                </select>
+                <button class="btn-action" onclick="postTopic()">Publicar</button>
+            </div>
+        </aside>
+        <main id="topics-list" class="topics-grid"></main>
+    </div>
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/api.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', checkSession);
+</script>
+</body>
+</html>

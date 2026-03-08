@@ -1,0 +1,79 @@
+:root {
+    --bg-deep: #0f172a;
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    --accent-glow: #10b981;
+    --accent-gradient: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+    --text-primary: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-glass: rgba(255, 255, 255, 0.1);
+    --danger: #f87171;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: radial-gradient(circle at top right, #1e293b, var(--bg-deep));
+    color: var(--text-primary); margin: 0; min-height: 100vh;
+}
+
+#toast {
+    position: fixed; top: 15px; right: 15px; padding: 0.75rem 1.25rem;
+    border-radius: 0.75rem; background: #1e293b; border: 1px solid var(--accent-glow);
+    color: white; display: none; z-index: 9999; box-shadow: 0 15px 20px rgba(0,0,0,0.4);
+    font-size: 0.9rem;
+}
+
+header {
+    background: var(--glass-bg); backdrop-filter: blur(12px);
+    padding: 0.75rem 2.5rem; display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--border-glass); position: sticky; top: 0; z-index: 1000;
+}
+
+.logo { font-size: 1.3rem; font-weight: 800; letter-spacing: -1px; }
+.logo span { background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+.main-container { display: none; grid-template-columns: 280px 1fr; gap: 1.5rem; padding: 1.5rem 2.5rem; max-width: 1700px; margin: 0 auto; }
+
+.glass-panel {
+    background: var(--glass-bg); backdrop-filter: blur(8px);
+    border: 1px solid var(--border-glass); border-radius: 1rem;
+    padding: 1.25rem; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* ESTILO DE TARJETAS */
+.topics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; align-items: start; }
+
+.topic-card {
+    background: var(--glass-bg); border: 1px solid var(--border-glass);
+    border-radius: 0.75rem; padding: 1rem; position: relative;
+    transition: 0.3s; animation: fadeInUp 0.4s ease forwards;
+    display: flex; flex-direction: column; gap: 0.5rem;
+}
+.topic-card:hover { transform: translateY(-3px); border-color: var(--accent-glow); }
+
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+input, textarea, select {
+    width: 100%; background: rgba(15, 23, 42, 0.4); border: 1px solid var(--border-glass);
+    color: white; padding: 0.65rem; border-radius: 0.6rem; margin-bottom: 0.75rem; box-sizing: border-box; outline: none; font-size: 0.9rem;
+}
+
+.btn-action {
+    background: var(--accent-gradient); color: white; border: none;
+    padding: 0.7rem; border-radius: 0.6rem; font-weight: 600; cursor: pointer; width: 100%; font-size: 0.95rem;
+}
+
+.badge { padding: 3px 10px; border-radius: 15px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; align-self: flex-start;}
+.badge-java { background: #431407; color: #fb923c; }
+.badge-spring { background: #064e3b; color: #34d399; }
+.badge-mysql { background: #1e3a8a; color: #93c5fd; }
+.badge-default { background: #334155; color: #e2e8f0; }
+
+.card-header { display: flex; justify-content: space-between; align-items: start; gap: 0.5rem; }
+.card-actions { display: flex; gap: 4px; }
+.btn-mini { background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); color: var(--text-muted); padding: 3px 6px; border-radius: 4px; cursor: pointer; font-size: 11px; transition: 0.2s; }
+.btn-mini:hover { background: rgba(255,255,255,0.08); color: white; }
+
+.modal-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(3px); z-index: 2000; justify-content: center; align-items: center;
+}
