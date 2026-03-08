@@ -12,6 +12,7 @@ ForoHub es una API REST diseñada para replicar el funcionamiento de un foro de 
 - **CRUD de Tópicos:** Gestión completa (Crear, Listar, Detallar, Actualizar y Eliminar).
 - **Validaciones de Datos:** Uso de Bean Validation para garantizar la integridad de la información.
 - **Base de Datos:** Persistencia relacional con MySQL y Spring Data JPA.
+- **Front End interactivo**
 
 ## 📁 Estructura del Proyecto
 ```text
@@ -32,7 +33,7 @@ forohub/
 - Clonar el repositorio.
 - Configurar el acceso a MySQL en: `src/main/resources/application.properties`:
 - Crea una tabla en MySQL Workbench
-```java
+```sql
     # CREATE DATABASE_forohub_db;
 ```
 - Configura las variables de entorno de desarrollo (Obligatorio)
