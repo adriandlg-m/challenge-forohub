@@ -31,8 +31,7 @@ forohub/
 
 ## ⚙️ Configuración
 - Clonar el repositorio.
-- Configurar el acceso a MySQL en: `src/main/resources/application.properties`:
-- Crea una tabla en MySQL Workbench
+- Crea una tabla en MySQL Workbench.
 ```sql
     # CREATE DATABASE_forohub_db;
 ```
